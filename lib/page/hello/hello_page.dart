@@ -67,6 +67,8 @@ class _HelloPageState extends State<HelloPage> {
     initLinksStream();
     initPlatformState();
     WidgetkitPlugin.notify();
+    Constants.code_verifier = "l7awUsGTdwt493.8l6jh~NlUYsllShZx5sfBvD4lhUW4dUvWnYjtv_VJ4aHXmbVXeNk7IQwU8n~oq_i-HhJG4I0NTR4kehJzL9i.OzORRCPehLLoxjmNCu9164HDPr17";
+    Leader.pushWithUri(context, Uri.parse("pixiv://account/login?code=xGMfogQb6eatfq_fzLrlfaN3FZ1X6my4fTFV8ZzgI_M&via=login"));
   }
 
   Future<void> initPlatformState() async {

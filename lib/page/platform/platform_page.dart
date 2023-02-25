@@ -23,10 +23,12 @@ import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pixez/document_plugin.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:pixez/er/leader.dart';
 import 'package:pixez/i18n.dart';
 import 'package:pixez/main.dart';
 import 'package:pixez/open_setting_plugin.dart';
 import 'package:pixez/page/directory/save_mode_choice_page.dart';
+import 'package:pixez/page/hello/setting/save_eval_page.dart';
 import 'package:pixez/page/hello/setting/save_format_page.dart';
 
 class PlatformPage extends StatefulWidget {
@@ -133,7 +135,9 @@ class _PlatformPageState extends State<PlatformPage> {
               ListTile(
                 leading: Icon(Icons.format_align_left),
                 title: Text(I18n.of(context).save_format),
-                subtitle: Text(userSetting.format ?? ""),
+                subtitle: Text(userSetting.fileNameEval == 1
+                    ? "Eval"
+                    : userSetting.format ?? ""),
                 onTap: () async {
                   final result =
                       await Navigator.of(context, rootNavigator: true).push(
@@ -144,6 +148,21 @@ class _PlatformPageState extends State<PlatformPage> {
                   }
                   // if (result != null) userSetting.setPath(result);
                 },
+                trailing: InkWell(
+                  onTap: () {
+                    Leader.push(context, SaveEvalPage());
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(8),
+                    child: userSetting.fileNameEval == 1
+                        ? Text(
+                            "Eval",
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          )
+                        : Text("Eval"),
+                  ),
+                ),
               ),
               Observer(
                 builder: (context) {
